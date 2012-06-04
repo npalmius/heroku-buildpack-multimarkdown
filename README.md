@@ -5,7 +5,7 @@ Run a static web site from Markdown files.
 
 1. Create an `index.md` file:
 
-        echo "# hello, world"
+        echo "# hello, world" > index.md
 
 2. Create a git repo containing the file:
 
