@@ -23,7 +23,17 @@ for f in $MARKDOWN_FILES; do
   fi
   echo -e "</head>" >> $NEWFILE
   echo -e "<body>" >> $NEWFILE
+  BODYHEADERFILE=$(dirname $f)/_body_header.html
+  if [ -f $BODYHEADERFILE ]; then
+    echo "         using body header $BODYHEADERFILE"
+    cat $BODYHEADERFILE >> $NEWFILE
+  fi
   $PERL $ROOT_DIR/opt/Markdown.pl $f >> $NEWFILE
+  BODYFOOTERFILE=$(dirname $f)/_body_footer.html
+  if [ -f $BODYFOOTERFILE ]; then
+    echo "         using body footer $BODYFOOTERFILE"
+    cat $BODYFOOTERFILE >> $NEWFILE
+  fi
   echo -e "</body>" >> $NEWFILE
   echo -e "</html>" >> $NEWFILE
   rm $f
