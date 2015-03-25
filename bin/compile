@@ -16,6 +16,11 @@ for f in $MARKDOWN_FILES; do
   echo "       $f -> $NEWFILE"
   echo -e "<html>" > $NEWFILE
   echo -e "<head>" >> $NEWFILE
+  HEADFILE=$(dirname $f)/_head.html
+  if [ -f $HEADFILE ]; then
+    echo "         using header $HEADFILE"
+    cat $HEADFILE >> $NEWFILE
+  fi
   echo -e "</head>" >> $NEWFILE
   echo -e "<body>" >> $NEWFILE
   $PERL $ROOT_DIR/opt/Markdown.pl $f >> $NEWFILE
