@@ -39,4 +39,4 @@ for f in $MARKDOWN_FILES; do
   rm $f
 done
 
-echo "-----> Using $(python --version 2>&1)"
+echo "-----> Using $(python3 --version 2>&1)"

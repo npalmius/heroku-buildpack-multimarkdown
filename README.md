@@ -15,7 +15,7 @@ Run a static web site from Markdown files.
 
 3. Create an app on Heroku:
 
-        heroku create -s cedar --buildpack https://github.com/jamesward/heroku-buildpack-markdown.git
+        heroku create -s cedar-14 --buildpack https://github.com/npalmius/heroku-buildpack-markdown.git
 
 4. Push the repo to Heroku:
 
