@@ -37,4 +37,6 @@ for f in $MARKDOWN_FILES; do
   echo -e "</body>" >> $NEWFILE
   echo -e "</html>" >> $NEWFILE
   rm $f
-done 
+done
+
+echo "-----> Using $(python --version 2>&1)"
