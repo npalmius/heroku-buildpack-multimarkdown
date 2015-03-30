@@ -8,6 +8,7 @@ echo "-----> Found an index.md"
 echo "-----> Markdown to HTML"
 echo "-----> Building MultiMarkdown-4"
 
+mkdir $2
 curl https://github.com/fletcher/MultiMarkdown-4/archive/master.tar.gz -sL -o - | tar xzf - -C $2
 rm -R $2/MultiMarkdown-4-master/greg
 curl https://github.com/nddrylliog/greg/archive/master.tar.gz -sL -o - | tar xzf - -C $2/MultiMarkdown-4-master/
