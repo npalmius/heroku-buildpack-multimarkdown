@@ -19,7 +19,7 @@ curl https://github.com/nddrylliog/greg/archive/master.tar.gz -sL -o - | tar xzf
 
 echo "-----> Building MultiMarkdown-4"
 
-make -C $2/MultiMarkdown-4/ | indent
+make -C $2/MultiMarkdown-4/ 2>&1 | indent
 
 echo "-----> Generating HTML files"
 
