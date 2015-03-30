@@ -4,6 +4,9 @@ set -eo pipefail
 
 BIN_DIR=$(cd $(dirname $0); pwd)
 
+# Load some convenience functions like status(), echo(), and indent()
+source $BIN_DIR/common.sh
+
 echo "-----> Found an index.md"
 echo "-----> Markdown to HTML"
 echo "-----> Downloading MultiMarkdown-4"
@@ -16,7 +19,7 @@ curl https://github.com/nddrylliog/greg/archive/master.tar.gz -sL -o - | tar xzf
 
 echo "-----> Building MultiMarkdown-4"
 
-make -C $2/MultiMarkdown-4/
+make -C $2/MultiMarkdown-4/ | indent
 
 echo "-----> Generating HTML files"
 
