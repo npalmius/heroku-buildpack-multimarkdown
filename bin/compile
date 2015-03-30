@@ -9,7 +9,7 @@ echo "-----> Markdown to HTML"
 echo "-----> Building MultiMarkdown-4"
 
 git clone https://github.com/fletcher/MultiMarkdown-4.git $1/MultiMarkdown-4
-cd $1/MultiMarkdown-4/
+cd $1/MultiMarkdown-4
 git submodule init
 git submodule update
 make
