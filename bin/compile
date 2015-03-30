@@ -6,14 +6,19 @@ BIN_DIR=$(cd $(dirname $0); pwd)
 
 echo "-----> Found an index.md"
 echo "-----> Markdown to HTML"
-echo "-----> Building MultiMarkdown-4"
+echo "-----> Downloading MultiMarkdown-4"
 
 mkdir -p $2
 mkdir -p $2/MultiMarkdown-4
 curl https://github.com/fletcher/MultiMarkdown-4/archive/master.tar.gz -sL -o - | tar xzf - --strip 1 -C $2/MultiMarkdown-4
 mkdir -p $2/MultiMarkdown-4/greg
 curl https://github.com/nddrylliog/greg/archive/master.tar.gz -sL -o - | tar xzf - --strip 1 -C $2/MultiMarkdown-4/greg
+
+echo "-----> Building MultiMarkdown-4"
+
 make -C $2/MultiMarkdown-4/
+
+echo "-----> Generating HTML files"
 
 MARKDOWN_FILES=`find $1 -name "*.md"`
 
