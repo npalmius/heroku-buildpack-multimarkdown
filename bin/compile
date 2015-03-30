@@ -27,25 +27,25 @@ MARKDOWN_FILES=`find $1 -name "*.md"`
 
 for f in $MARKDOWN_FILES; do
   NEWFILE=${f%.*}.html
-  echo "       $f -> $NEWFILE"
+  echo "       ${f#$1} -> ${NEWFILE#$1}"
   echo -e "<html>" > $NEWFILE
   echo -e "<head>" >> $NEWFILE
   HEADFILE=$(dirname $f)/_head.html
   if [ -f $HEADFILE ]; then
-    echo "         using header $HEADFILE"
+    echo "         using header ${HEADFILE#$1}"
     cat $HEADFILE >> $NEWFILE
   fi
   echo -e "</head>" >> $NEWFILE
   echo -e "<body>" >> $NEWFILE
   BODYHEADERFILE=$(dirname $f)/_body_header.html
   if [ -f $BODYHEADERFILE ]; then
-    echo "         using body header $BODYHEADERFILE"
+    echo "         using body header ${BODYHEADERFILE#$1}"
     cat $BODYHEADERFILE >> $NEWFILE
   fi
   $2/MultiMarkdown-4/multimarkdown $f >> $NEWFILE
   BODYFOOTERFILE=$(dirname $f)/_body_footer.html
   if [ -f $BODYFOOTERFILE ]; then
-    echo "         using body footer $BODYFOOTERFILE"
+    echo "         using body footer ${BODYFOOTERFILE#$1}"
     cat $BODYFOOTERFILE >> $NEWFILE
   fi
   echo -e "</body>" >> $NEWFILE
