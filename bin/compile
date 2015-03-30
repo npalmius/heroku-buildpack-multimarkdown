@@ -9,11 +9,11 @@ echo "-----> Markdown to HTML"
 echo "-----> Building MultiMarkdown-4"
 
 mkdir -p $2
-curl https://github.com/fletcher/MultiMarkdown-4/archive/master.tar.gz -sL -o - | tar xzf - -C $2
-rm -R $2/MultiMarkdown-4-master/greg
-curl https://github.com/nddrylliog/greg/archive/master.tar.gz -sL -o - | tar xzf - -C $2/MultiMarkdown-4-master/
-mv $2/MultiMarkdown-4-master/greg-master $2/MultiMarkdown-4-master/greg
-make -C $2/MultiMarkdown-4-master/
+mkdir -p $2/MultiMarkdown-4
+curl https://github.com/fletcher/MultiMarkdown-4/archive/master.tar.gz -sL -o - | tar xzf - --strip 1 -C $2/MultiMarkdown-4
+mkdir -p $2/MultiMarkdown-4/greg
+curl https://github.com/nddrylliog/greg/archive/master.tar.gz -sL -o - | tar xzf - --strip 1 -C $2/MultiMarkdown-4-master/greg
+make -C $2/MultiMarkdown-4/
 
 MARKDOWN_FILES=`find $1 -name "*.md"`
 
@@ -34,7 +34,7 @@ for f in $MARKDOWN_FILES; do
     echo "         using body header $BODYHEADERFILE"
     cat $BODYHEADERFILE >> $NEWFILE
   fi
-  $2/MultiMarkdown-4-master/multimarkdown $f >> $NEWFILE
+  $2/MultiMarkdown-4/multimarkdown $f >> $NEWFILE
   BODYFOOTERFILE=$(dirname $f)/_body_footer.html
   if [ -f $BODYFOOTERFILE ]; then
     echo "         using body footer $BODYFOOTERFILE"
