@@ -3,11 +3,17 @@
 set -eo pipefail
 
 BIN_DIR=$(cd $(dirname $0); pwd)
-ROOT_DIR=$(dirname $BIN_DIR)
-PERL=`which perl`
 
 echo "-----> Found an index.md"
 echo "-----> Markdown to HTML"
+echo "-----> Building MultiMarkdown-4"
+
+git clone https://github.com/fletcher/MultiMarkdown-4.git
+cd MultiMarkdown-4/
+git submodule init
+git submodule update
+make
+cd ..
 
 MARKDOWN_FILES=`find $1 -name "*.md"`
 
@@ -28,7 +34,7 @@ for f in $MARKDOWN_FILES; do
     echo "         using body header $BODYHEADERFILE"
     cat $BODYHEADERFILE >> $NEWFILE
   fi
-  $PERL $ROOT_DIR/opt/Markdown.pl $f >> $NEWFILE
+  $BIN_DIR/MultiMarkdown-4/multimarkdown $f >> $NEWFILE
   BODYFOOTERFILE=$(dirname $f)/_body_footer.html
   if [ -f $BODYFOOTERFILE ]; then
     echo "         using body footer $BODYFOOTERFILE"
