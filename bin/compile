@@ -12,7 +12,7 @@ mkdir -p $2
 mkdir -p $2/MultiMarkdown-4
 curl https://github.com/fletcher/MultiMarkdown-4/archive/master.tar.gz -sL -o - | tar xzf - --strip 1 -C $2/MultiMarkdown-4
 mkdir -p $2/MultiMarkdown-4/greg
-curl https://github.com/nddrylliog/greg/archive/master.tar.gz -sL -o - | tar xzf - --strip 1 -C $2/MultiMarkdown-4-master/greg
+curl https://github.com/nddrylliog/greg/archive/master.tar.gz -sL -o - | tar xzf - --strip 1 -C $2/MultiMarkdown-4/greg
 make -C $2/MultiMarkdown-4/
 
 MARKDOWN_FILES=`find $1 -name "*.md"`
