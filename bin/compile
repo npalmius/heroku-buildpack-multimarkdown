@@ -8,8 +8,8 @@ echo "-----> Found an index.md"
 echo "-----> Markdown to HTML"
 echo "-----> Building MultiMarkdown-4"
 
-git clone https://github.com/fletcher/MultiMarkdown-4.git
-cd MultiMarkdown-4/
+git clone https://github.com/fletcher/MultiMarkdown-4.git $1/MultiMarkdown-4
+cd $1/MultiMarkdown-4/
 git submodule init
 git submodule update
 make
@@ -34,7 +34,7 @@ for f in $MARKDOWN_FILES; do
     echo "         using body header $BODYHEADERFILE"
     cat $BODYHEADERFILE >> $NEWFILE
   fi
-  $BIN_DIR/MultiMarkdown-4/multimarkdown $f >> $NEWFILE
+  $1/MultiMarkdown-4/multimarkdown $f >> $NEWFILE
   BODYFOOTERFILE=$(dirname $f)/_body_footer.html
   if [ -f $BODYFOOTERFILE ]; then
     echo "         using body footer $BODYFOOTERFILE"
